@@ -33,15 +33,16 @@ class _InputPageState extends State<InputPage> {
                   child: ReUsableCard(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Icon(
                           FontAwesomeIcons.mars,
-                          size: 120,
+                          size: 100,
                         ),
                         Text(
                           "Male",
-                          style: TextStyle(fontSize: 32),
+                          style: TextStyle(fontSize: 28),
                         )
                       ],
                     ),
@@ -51,15 +52,16 @@ class _InputPageState extends State<InputPage> {
                   child: ReUsableCard(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Icon(
                           FontAwesomeIcons.venus,
-                          size: 120,
+                          size: 100,
                         ),
                         Text(
                           "Female",
-                          style: TextStyle(fontSize: 32),
+                          style: TextStyle(fontSize: 28),
                         )
                       ],
                     ),
@@ -69,7 +71,33 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: ReUsableCard(),
+            child: ReUsableCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text('HEIGHT'),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[Text('180'), Text('cm')],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      child: Text('slider'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: Row(
