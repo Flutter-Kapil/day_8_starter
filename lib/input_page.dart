@@ -7,6 +7,16 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Container dummy = Container(
+    margin: EdgeInsets.all(12),
+    decoration: BoxDecoration(
+      color: Color(0xFF1D1F31),
+      borderRadius: BorderRadius.all(
+        Radius.circular(12),
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,73 +24,86 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1F33),
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReUsableCard(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          FontAwesomeIcons.mars,
+                          size: 120,
+                        ),
+                        Text(
+                          "Male",
+                          style: TextStyle(fontSize: 32),
+                        )
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1F33),
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: EdgeInsets.all(14),
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Color(0xFF1D1F33),
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
-              ),
-            ),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1F33),
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
+                Expanded(
+                  child: ReUsableCard(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          FontAwesomeIcons.venus,
+                          size: 120,
+                        ),
+                        Text(
+                          "Female",
+                          style: TextStyle(fontSize: 32),
+                        )
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1F33),
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: ReUsableCard(),
+          ),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReUsableCard(),
+                ),
+                Expanded(
+                  child: ReUsableCard(),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+    );
+  }
+}
+
+class ReUsableCard extends StatelessWidget {
+  final Color color;
+  final Widget child;
+  ReUsableCard({this.color = const Color(0xFF1D1F31), this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: child,
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
       ),
     );
   }
