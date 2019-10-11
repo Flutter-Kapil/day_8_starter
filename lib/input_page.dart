@@ -9,11 +9,12 @@ class InputPage extends StatefulWidget {
 enum Gender { male, female }
 
 class _InputPageState extends State<InputPage> {
-  double initialHeight = 180;
-  int finalHeight;
+  double height = 180;
   Gender gender;
   Color activeCardColor = Color(0xFF1D1F31); // Color(0xFF1D1F31)
   Color inactiveCardColor = Color(0xFF111328); //Color(0xFF111328)
+  Color activeTextColor = Colors.white;
+  Color inactiveTextColor = Colors.white70;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +46,17 @@ class _InputPageState extends State<InputPage> {
                         Icon(
                           FontAwesomeIcons.mars,
                           size: 100,
+                          color: gender == Gender.male
+                              ? activeTextColor
+                              : inactiveTextColor,
                         ),
                         Text(
                           "Male",
-                          style: TextStyle(fontSize: 28),
+                          style: TextStyle(
+                              fontSize: 28,
+                              color: gender == Gender.male
+                                  ? activeTextColor
+                                  : inactiveTextColor),
                         )
                       ],
                     ),
@@ -69,13 +77,18 @@ class _InputPageState extends State<InputPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.venus,
-                          size: 100,
-                        ),
+                        Icon(FontAwesomeIcons.venus,
+                            size: 100,
+                            color: gender == Gender.female
+                                ? activeTextColor
+                                : inactiveTextColor),
                         Text(
                           "Female",
-                          style: TextStyle(fontSize: 28),
+                          style: TextStyle(
+                              fontSize: 28,
+                              color: gender == Gender.female
+                                  ? activeTextColor
+                                  : inactiveTextColor),
                         )
                       ],
                     ),
@@ -107,7 +120,7 @@ class _InputPageState extends State<InputPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          '${initialHeight.toInt()}',
+                          '${height.toInt()}',
                           style: TextStyle(
                               fontSize: 50, fontWeight: FontWeight.bold),
                         ),
@@ -121,14 +134,11 @@ class _InputPageState extends State<InputPage> {
                       child: Slider(
                         min: 110,
                         max: 250,
-                        value: initialHeight,
-                        onChanged: (height) {
+                        value: height,
+                        onChanged: (newheight) {
                           setState(() {
-                            finalHeight = height.toInt();
-                            initialHeight = height;
-
-                            print(
-                                "initialHeight:$initialHeight Finalheight:$finalHeight");
+                            height = newheight;
+                            print("height:${height.toInt()} ");
                           });
                         },
                       ),
