@@ -9,7 +9,8 @@ class InputPage extends StatefulWidget {
 enum Gender { male, female }
 
 class _InputPageState extends State<InputPage> {
-  RangeValues _values = RangeValues(0.3, 0.7);
+  double initialHeight = 180;
+  int finalHeight;
   Gender gender;
   Color activeCardColor = Color(0xFF1D1F31); // Color(0xFF1D1F31)
   Color inactiveCardColor = Color(0xFF111328); //Color(0xFF111328)
@@ -93,7 +94,7 @@ class _InputPageState extends State<InputPage> {
                     child: Container(
                       alignment: Alignment.bottomCenter,
                       child: Text(
-                        'HEIGHT',
+                        'Height',
                         style: TextStyle(fontSize: 20, color: Colors.white70),
                       ),
                     ),
@@ -101,10 +102,12 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     flex: 2,
                     child: Row(
+                      textBaseline: TextBaseline.alphabetic,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          '180',
+                          '${initialHeight.toInt()}',
                           style: TextStyle(
                               fontSize: 50, fontWeight: FontWeight.bold),
                         ),
@@ -115,11 +118,17 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     flex: 2,
                     child: Container(
-                      child: RangeSlider(
-                        values: _values,
-                        onChanged: (RangeValues values) {
+                      child: Slider(
+                        min: 110,
+                        max: 250,
+                        value: initialHeight,
+                        onChanged: (height) {
                           setState(() {
-                            _values = values;
+                            finalHeight = height.toInt();
+                            initialHeight = height;
+
+                            print(
+                                "initialHeight:$initialHeight Finalheight:$finalHeight");
                           });
                         },
                       ),
