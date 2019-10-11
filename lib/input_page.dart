@@ -13,13 +13,6 @@ class _InputPageState extends State<InputPage> {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundMaleColor = inactiveCardColor;
-    Color backgroundFemaleColor = inactiveCardColor;
-    if (gender == 0) {
-      backgroundMaleColor = activeCardColor;
-    } else if (gender == 1) {
-      backgroundFemaleColor = activeCardColor;
-    }
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
@@ -32,7 +25,7 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReUsableCard(
-                    color: backgroundMaleColor,
+                    color: gender == 0 ? activeCardColor : inactiveCardColor,
                     onTap: () {
                       gender = 0;
                       print(gender);
@@ -57,7 +50,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReUsableCard(
-                    color: backgroundFemaleColor,
+                    color: gender == 1 ? activeCardColor : inactiveCardColor,
                     onTap: () {
                       gender = 1;
                       print(gender);
