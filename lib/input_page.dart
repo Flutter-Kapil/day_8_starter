@@ -131,16 +131,25 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     flex: 2,
                     child: Container(
-                      child: Slider(
-                        min: 110,
-                        max: 250,
-                        value: height,
-                        onChanged: (newheight) {
-                          setState(() {
-                            height = newheight;
-                            print("height:${height.toInt()} ");
-                          });
-                        },
+                      child: SliderTheme(
+                        data: SliderThemeData(
+                          activeTrackColor: Colors.white,
+                          inactiveTrackColor: Colors.white30,
+                          overlayColor: Colors.pink.withOpacity(0.2),
+                          thumbShape:
+                              RoundSliderThumbShape(enabledThumbRadius: 14.0),
+                          thumbColor: Colors.pink,
+                        ),
+                        child: Slider(
+                          min: 110,
+                          max: 250,
+                          value: height,
+                          onChanged: (newheight) {
+                            setState(() {
+                              height = newheight;
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ),
