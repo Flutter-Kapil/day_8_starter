@@ -6,8 +6,10 @@ class InputPage extends StatefulWidget {
   _InputPageState createState() => _InputPageState();
 }
 
+enum Gender { male, female }
+
 class _InputPageState extends State<InputPage> {
-  int gender;
+  Gender gender;
   Color activeCardColor = Color(0xFF1D1F31); // Color(0xFF1D1F31)
   Color inactiveCardColor = Color(0xFF111328); //Color(0xFF111328)
 
@@ -25,11 +27,13 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReUsableCard(
-                    color: gender == 0 ? activeCardColor : inactiveCardColor,
+                    color: gender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
                     onTap: () {
-                      gender = 0;
-                      print(gender);
-                      setState(() {});
+                      setState(() {
+                        gender = Gender.male;
+                      });
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -50,11 +54,13 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReUsableCard(
-                    color: gender == 1 ? activeCardColor : inactiveCardColor,
+                    color: gender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
                     onTap: () {
-                      gender = 1;
-                      print(gender);
-                      setState(() {});
+                      setState(() {
+                        gender = Gender.female;
+                      });
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
