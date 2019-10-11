@@ -7,15 +7,9 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Container dummy = Container(
-    margin: EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: Color(0xFF1D1F31),
-      borderRadius: BorderRadius.all(
-        Radius.circular(12),
-      ),
-    ),
-  );
+
+
+  int gender;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +26,8 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReUsableCard(
                     onTap: () {
-                      print('male clicked');
+                      gender = 0;
+                      print(gender);
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -54,7 +49,8 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReUsableCard(
                     onTap: () {
-                      print('Female cicked');
+                      gender = 1;
+                      print(gender);
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
