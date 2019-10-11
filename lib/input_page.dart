@@ -9,6 +9,7 @@ class InputPage extends StatefulWidget {
 enum Gender { male, female }
 
 class _InputPageState extends State<InputPage> {
+  RangeValues _values = RangeValues(0.3, 0.7);
   Gender gender;
   Color activeCardColor = Color(0xFF1D1F31); // Color(0xFF1D1F31)
   Color inactiveCardColor = Color(0xFF111328); //Color(0xFF111328)
@@ -90,21 +91,38 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Text('HEIGHT'),
+                      alignment: Alignment.bottomCenter,
+                      child: Text(
+                        'HEIGHT',
+                        style: TextStyle(fontSize: 20, color: Colors.white70),
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 2,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[Text('180'), Text('cm')],
+                      children: <Widget>[
+                        Text(
+                          '180',
+                          style: TextStyle(
+                              fontSize: 50, fontWeight: FontWeight.bold),
+                        ),
+                        Text('cm', style: TextStyle(color: Colors.white70))
+                      ],
                     ),
                   ),
                   Expanded(
                     flex: 2,
                     child: Container(
-                      child: Text('slider'),
+                      child: RangeSlider(
+                        values: _values,
+                        onChanged: (RangeValues values) {
+                          setState(() {
+                            _values = values;
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ],
