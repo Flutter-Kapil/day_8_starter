@@ -7,8 +7,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-
-
   int gender;
 
   @override
