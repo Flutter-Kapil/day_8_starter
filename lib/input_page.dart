@@ -120,17 +120,22 @@ class _InputPageState extends State<InputPage> {
 class ReUsableCard extends StatelessWidget {
   final Color color;
   final Widget child;
-  ReUsableCard({this.color = const Color(0xFF1D1F31), this.child});
+  final Function onTap;
+
+  ReUsableCard({this.color = const Color(0xFF1D1F31), this.child, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: child,
-      margin: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.all(
-          Radius.circular(12),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        child: child,
+        margin: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
         ),
       ),
     );
