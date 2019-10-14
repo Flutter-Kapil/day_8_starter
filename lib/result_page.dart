@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 const bmiRangeStyle = TextStyle(fontSize: 16, color: Colors.white70);
 const resultCommentStyle = TextStyle(
-  fontSize: 18,
+  fontSize: 20,
   color: Colors.white,
 );
 const bmiStyle =
@@ -26,7 +26,7 @@ class ResultPage extends StatelessWidget {
 
   String commentText(double bmi) {
     if (bmi < 18.5)
-      return "Don\'t startve yoursel. Having heatly meal is essential for your body";
+      return "Don\'t starve yourself. Having heatly meal is essential for your body";
     else if (bmi >= 18.5 && bmi <= 24.9)
       return "You have a normal body weight, good job";
     else if (bmi >= 25 && bmi <= 29.9)
@@ -58,7 +58,7 @@ class ResultPage extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(14.0),
               alignment: Alignment.centerLeft,
               child: Text(
                 "Your Result",
@@ -68,8 +68,9 @@ class ResultPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 6,
+            flex: 8,
             child: Card(
+              color: Colors.white.withOpacity(0.05),
               margin: EdgeInsets.all(14.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -106,11 +107,14 @@ class ResultPage extends StatelessWidget {
                     commentText(bmi),
                     style: resultCommentStyle,
                     softWrap: true,
+                    textAlign: TextAlign.center,
                   ),
-                  FlatButton(
-                    child: Text("Save result"),
-                    color: Color(0xFF4C5FE),
-                    onPressed: () {},
+                  Container(
+                    child: FlatButton(
+                      child: Text("Save result"),
+                      color: Color(0xFF4C5FE),
+                      onPressed: () {},
+                    ),
                   )
                 ],
               ),

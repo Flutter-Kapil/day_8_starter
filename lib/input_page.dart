@@ -9,7 +9,7 @@ class InputPage extends StatefulWidget {
   _InputPageState createState() => _InputPageState();
 }
 
-const defaultUpperTextStyle = TextStyle(fontSize: 16, color: Colors.white70);
+const defaultUpperTextStyle = TextStyle(fontSize: 15, color: Colors.white70);
 const defaultLowerTextStyle =
     TextStyle(fontSize: 35, fontWeight: FontWeight.bold);
 
@@ -19,8 +19,8 @@ class _InputPageState extends State<InputPage> {
   Gender gender;
   Color activeCardColor = Color(0xFF1D1F31);
   Color inactiveCardColor = Color(0xFF111328);
-  TextStyle inactiveTextStyle = TextStyle(fontSize: 24, color: Colors.white60);
-  TextStyle activeTextStyle = TextStyle(fontSize: 24, color: Colors.white);
+  TextStyle inactiveTextStyle = TextStyle(fontSize: 22, color: Colors.white60);
+  TextStyle activeTextStyle = TextStyle(fontSize: 22, color: Colors.white);
   Color activeTextColor = Colors.white;
   Color inactiveTextColor = Colors.white60;
   int height = 183;
@@ -44,16 +44,13 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Icon(FontAwesomeIcons.mars,
-                            size: 60,
+                            size: 70,
                             color: gender == Gender.male
                                 ? activeTextColor
                                 : inactiveTextColor),
-                        SizedBox(
-                          height: 10,
-                        ),
                         Text(
                           'MALE',
                           style: gender == Gender.male
@@ -82,17 +79,14 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Icon(
                           FontAwesomeIcons.venus,
-                          size: 60,
+                          size: 70,
                           color: gender == Gender.female
                               ? activeTextColor
                               : inactiveTextColor,
-                        ),
-                        SizedBox(
-                          height: 10,
                         ),
                         Text(
                           'FEMALE',
@@ -144,10 +138,10 @@ class _InputPageState extends State<InputPage> {
                   SliderTheme(
                     data: SliderThemeData().copyWith(
                       thumbShape: RoundSliderThumbShape(
-                        enabledThumbRadius: 15.0,
+                        enabledThumbRadius: 14.0,
                       ),
                       overlayShape: RoundSliderOverlayShape(
-                        overlayRadius: 25.0,
+                        overlayRadius: 20.0,
                       ),
                       thumbColor: Color(0XFFEB1555),
                       overlayColor: Color(0X29EB1555),
@@ -188,14 +182,20 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             RoundButton(
-                              icon: Icon(Icons.remove),
+                              icon: Icon(
+                                Icons.remove,
+                                size: 38,
+                              ),
                               callback: () {
                                 weight = weight - 1;
                                 setState(() {});
                               },
                             ),
                             RoundButton(
-                              icon: Icon(Icons.add),
+                              icon: Icon(
+                                Icons.add,
+                                size: 38,
+                              ),
                               callback: () {
                                 weight = weight + 1;
                                 setState(() {});
@@ -221,17 +221,17 @@ class _InputPageState extends State<InputPage> {
                         ),
                         Text(age.toString(), style: defaultLowerTextStyle),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             RoundButton(
-                              icon: Icon(Icons.add),
+                              icon: Icon(Icons.add, size: 38),
                               callback: () {
                                 age++;
                                 setState(() {});
                               },
                             ),
                             RoundButton(
-                              icon: Icon(Icons.remove),
+                              icon: Icon(Icons.remove, size: 38),
                               callback: () {
                                 age--;
                                 setState(() {});
@@ -248,7 +248,7 @@ class _InputPageState extends State<InputPage> {
           ),
           Container(
             width: double.infinity,
-            height: 60,
+            height: 50,
             child: FlatButton(
               child: Text("CALCULATE YOUR  BMI"),
               color: Colors.pink,
