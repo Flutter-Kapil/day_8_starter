@@ -1,20 +1,31 @@
+import 'package:day_8_starter/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'round_button.dart';
+import 'reusable_card.dart';
 
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
+const defaultUpperTextStyle = TextStyle(fontSize: 16, color: Colors.white70);
+const defaultLowerTextStyle =
+    TextStyle(fontSize: 35, fontWeight: FontWeight.bold);
+
 enum Gender { male, female }
 
 class _InputPageState extends State<InputPage> {
-  double height = 180;
   Gender gender;
-  Color activeCardColor = Color(0xFF1D1F31); // Color(0xFF1D1F31)
-  Color inactiveCardColor = Color(0xFF111328); //Color(0xFF111328)
+  Color activeCardColor = Color(0xFF1D1F31);
+  Color inactiveCardColor = Color(0xFF111328);
+  TextStyle inactiveTextStyle = TextStyle(fontSize: 24, color: Colors.white60);
+  TextStyle activeTextStyle = TextStyle(fontSize: 24, color: Colors.white);
   Color activeTextColor = Colors.white;
-  Color inactiveTextColor = Colors.white70;
+  Color inactiveTextColor = Colors.white60;
+  int height = 183;
+  int weight = 74;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -26,133 +37,134 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         children: <Widget>[
           Expanded(
+            flex: 1,
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: ReUsableCard(
+                  child: ReusableCard(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(FontAwesomeIcons.mars,
+                            size: 60,
+                            color: gender == Gender.male
+                                ? activeTextColor
+                                : inactiveTextColor),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'MALE',
+                          style: gender == Gender.male
+                              ? activeTextStyle
+                              : inactiveTextStyle,
+                        )
+                      ],
+                    ),
                     color: gender == Gender.male
                         ? activeCardColor
                         : inactiveCardColor,
-                    onTap: () {
+                    // if(gender== 0){
+                    // return activeCardColor;
+                    // } else{
+                    // return inavctiveCardColor
+                    //}
+                    tapCallback: () {
                       setState(() {
                         gender = Gender.male;
                       });
+                      print('Male selected');
                     },
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.mars,
-                          size: 100,
-                          color: gender == Gender.male
-                              ? activeTextColor
-                              : inactiveTextColor,
-                        ),
-                        Text(
-                          "Male",
-                          style: TextStyle(
-                              fontSize: 28,
-                              color: gender == Gender.male
-                                  ? activeTextColor
-                                  : inactiveTextColor),
-                        )
-                      ],
-                    ),
                   ),
                 ),
                 Expanded(
-                  child: ReUsableCard(
-                    color: gender == Gender.female
-                        ? activeCardColor
-                        : inactiveCardColor,
-                    onTap: () {
-                      setState(() {
-                        gender = Gender.female;
-                      });
-                    },
+                  child: ReusableCard(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(FontAwesomeIcons.venus,
-                            size: 100,
-                            color: gender == Gender.female
-                                ? activeTextColor
-                                : inactiveTextColor),
+                        Icon(
+                          FontAwesomeIcons.venus,
+                          size: 60,
+                          color: gender == Gender.female
+                              ? activeTextColor
+                              : inactiveTextColor,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
-                          "Female",
-                          style: TextStyle(
-                              fontSize: 28,
-                              color: gender == Gender.female
-                                  ? activeTextColor
-                                  : inactiveTextColor),
+                          'FEMALE',
+                          style: gender == Gender.female
+                              ? activeTextStyle
+                              : inactiveTextStyle,
                         )
                       ],
                     ),
+                    color: gender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    tapCallback: () {
+                      setState(() {
+                        gender = Gender.female;
+                      });
+
+                      print('Female selected');
+                    },
                   ),
                 )
               ],
             ),
           ),
           Expanded(
-            child: ReUsableCard(
+            flex: 1,
+            child: ReusableCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(
-                        'Height',
-                        style: TextStyle(fontSize: 20, color: Colors.white70),
+                  Text(
+                    'HEIGHT',
+                    style: defaultUpperTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(height.toString(), style: defaultLowerTextStyle),
+                      Text(
+                        'cm',
+                        style: TextStyle(fontSize: 20),
                       ),
-                    ),
+                    ],
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Row(
-                      textBaseline: TextBaseline.alphabetic,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          '${height.toInt()}',
-                          style: TextStyle(
-                              fontSize: 50, fontWeight: FontWeight.bold),
-                        ),
-                        Text('cm', style: TextStyle(color: Colors.white70))
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      child: SliderTheme(
-                        data: SliderThemeData(
-                          activeTrackColor: Colors.white,
-                          inactiveTrackColor: Colors.white30,
-                          overlayColor: Colors.pink.withOpacity(0.2),
-                          thumbShape:
-                              RoundSliderThumbShape(enabledThumbRadius: 14.0),
-                          thumbColor: Colors.pink,
-                        ),
-                        child: Slider(
-                          min: 110,
-                          max: 250,
-                          value: height,
-                          onChanged: (newheight) {
-                            setState(() {
-                              height = newheight;
-                            });
-                          },
-                        ),
+                  SliderTheme(
+                    data: SliderThemeData().copyWith(
+                      thumbShape: RoundSliderThumbShape(
+                        enabledThumbRadius: 15.0,
                       ),
+                      overlayShape: RoundSliderOverlayShape(
+                        overlayRadius: 25.0,
+                      ),
+                      thumbColor: Color(0XFFEB1555),
+                      overlayColor: Color(0X29EB1555),
+                      activeTrackColor: Colors.white,
                     ),
-                  ),
+                    child: Slider(
+                      min: 110,
+                      max: 210,
+                      value: height.toDouble(),
+                      inactiveColor: Color(0XFF8D8E98),
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.toInt();
+                        });
+                      },
+                    ),
+                  )
                 ],
               ),
             ),
@@ -161,40 +173,97 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: ReUsableCard(),
+                  child: ReusableCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: defaultUpperTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(weight.toString(), style: defaultLowerTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            RoundButton(
+                              icon: Icon(Icons.remove),
+                              callback: () {
+                                weight = weight - 1;
+                                setState(() {});
+                              },
+                            ),
+                            RoundButton(
+                              icon: Icon(Icons.add),
+                              callback: () {
+                                weight = weight + 1;
+                                setState(() {});
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReUsableCard(),
+                  flex: 1,
+                  child: ReusableCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "AGE",
+                          style: defaultUpperTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(age.toString(), style: defaultLowerTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundButton(
+                              icon: Icon(Icons.add),
+                              callback: () {
+                                age++;
+                                setState(() {});
+                              },
+                            ),
+                            RoundButton(
+                              icon: Icon(Icons.remove),
+                              callback: () {
+                                age--;
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 )
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class ReUsableCard extends StatelessWidget {
-  final Color color;
-  final Widget child;
-  final Function onTap;
-
-  ReUsableCard({this.color = const Color(0xFF1D1F31), this.child, this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        child: child,
-        margin: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.all(
-            Radius.circular(12),
+          Container(
+            width: double.infinity,
+            height: 60,
+            child: FlatButton(
+              child: Text("CALCULATE YOUR  BMI"),
+              color: Colors.pink,
+              onPressed: () {
+                double bmi = weight / ((height / 100) * (height / 100));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ResultPage(
+                              bmi: bmi,
+                            )));
+              },
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
